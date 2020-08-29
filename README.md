@@ -5,6 +5,7 @@
 <pre>
     <code>
     close: '.popup_close', // close button
+    background: ''         // background element
     box: '',               // html element of popup container 
     position: 'center',    // position of container
     trigger: '',           // trigger element
