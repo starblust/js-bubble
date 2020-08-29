@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bubble.css">
+</head>
+<body>
+    <div class="bubble-box">
+        <div class="bubble-inner">
+            <div class="bubble-header">
+                <div class="bubble-close">close</div>
+            </div>
+            <div class="bubble-body">
+                <p>Bubble body is here...</p>
+            </div>
+            <div class="bubble-footer">
+            </div>
+        </div>
+    </div>
+    <a id="show_bubble" href="javascript:void(0);">show bubble</a>
+    <script src="bubble.js"></script>
+    <script>
+        let Bubble1 = new Bubble({
+            box: '.bubble-box',
+            trigger: '#show_bubble',
+            close: '.bubble-close'
+        });
+        console.info(Bubble1);
+    </script>
+</body>
+</html>
