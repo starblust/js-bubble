@@ -28,7 +28,19 @@
             background: '.bubble-background',
             box: '.bubble-box',
             trigger: '#show_bubble',
-            close: '.bubble-close'
+            close: '.bubble-close',
+            onBeforeShow: (bubble) => {
+                alert('before show');
+            },
+            onAfterShow: (bubble) => {
+                alert('after show');
+            },
+            onBeforeHide: (bubble) => {
+                alert('before close');
+            },
+            onAfterHide: (bubble) => {
+                alert('after close');
+            }
         });
     </script>
 </body>

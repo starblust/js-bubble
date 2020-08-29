@@ -1,8 +1,8 @@
 /*
     Light popup
-    Version: 1.0.0
+    Version: 1.2.0
     Author: Artemij Artemev
-    Github: https://github.com/starblust/
+    Github: https://github.com/starblust/js-bubble
 */
 
 function Bubble(opts = {})
@@ -13,11 +13,16 @@ function Bubble(opts = {})
 
     this.default = {
         close: '',
+        shownClass: 'shown',
         background: '',
         box: '',
         position: 'center',
         trigger: '',
-        clOutsideClose: true 
+        clOutsideClose: true,
+        onBeforeShow: null,
+        onAfterShow: null,
+        onBeforeHide: null,
+        onAfterHide: null 
     }
 
     function processOpts(opts) {
@@ -65,7 +70,8 @@ function Bubble(opts = {})
 
     function attachEvents() {
         document.addEventListener('click', function(e) {
-            if (this.opts.clOutsideClose && !this.box.contains(e.target)) {
+            if (this.box.classList.value.split(' ').indexOf(this.opts.shownClass) != -1 
+                && this.opts.clOutsideClose && !this.box.contains(e.target)) {
                 this.hide();
             }
             
@@ -87,16 +93,28 @@ function Bubble(opts = {})
     }
 
     this.show = function() {
-        if (this.background) {
-            this.background.classList.add('shown');
+        if (this.opts.onBeforeShow) {
+            this.opts.onBeforeShow(this);
         }
-        this.box.classList.add('shown');
+        if (this.background) {
+            this.background.classList.add(this.opts.shownClass);
+        }
+        this.box.classList.add(this.opts.shownClass);
+        if (this.opts.onAfterShow) {
+            this.opts.onAfterShow(this);
+        }
     }
 
     this.hide = function() {
-        this.box.classList.remove('shown');
+        if (this.opts.onBeforeHide) {
+            this.opts.onBeforeHide(this);
+        }
+        this.box.classList.remove(this.opts.shownClass);
         if (this.background) {
-            this.background.classList.remove('shown');
+            this.background.classList.remove(this.opts.shownClass);
+        }
+        if (this.opts.onAfterHide) {
+            this.opts.onAfterHide(this);
         }
     }
 }
