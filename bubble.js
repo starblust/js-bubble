@@ -13,10 +13,11 @@ function Bubble(opts = {})
 
     this.default = {
         close: '',
+        background: '',
         box: '',
         position: 'center',
         trigger: '',
-        clOutsideClose: true,
+        clOutsideClose: true 
     }
 
     function processOpts(opts) {
@@ -29,6 +30,13 @@ function Bubble(opts = {})
     }
 
     function init() {
+        if (that.opts.background && !document.querySelector(that.opts.background)) {
+            console.error("background element not found");
+            return false;
+        } else if(that.opts.background) {
+            that.background = document.querySelector(that.opts.background);
+        }
+
         if (!that.opts.box || !document.querySelector(that.opts.box)) {
             console.error("box not found");
             return false;
@@ -79,11 +87,16 @@ function Bubble(opts = {})
     }
 
     this.show = function() {
-        console.log(this.box);
+        if (this.background) {
+            this.background.classList.add('shown');
+        }
         this.box.classList.add('shown');
     }
 
     this.hide = function() {
         this.box.classList.remove('shown');
+        if (this.background) {
+            this.background.classList.remove('shown');
+        }
     }
 }

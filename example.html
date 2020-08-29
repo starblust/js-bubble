@@ -7,15 +7,17 @@
     <link rel="stylesheet" href="bubble.css">
 </head>
 <body>
-    <div class="bubble-box">
-        <div class="bubble-inner">
-            <div class="bubble-header">
-                <div class="bubble-close">close</div>
-            </div>
-            <div class="bubble-body">
-                <p>Bubble body is here...</p>
-            </div>
-            <div class="bubble-footer">
+    <div class="bubble-background">
+        <div class="bubble-box">
+            <div class="bubble-inner">
+                <div class="bubble-header">
+                    <div class="bubble-close">close</div>
+                </div>
+                <div class="bubble-body">
+                    <p>Bubble body is here...</p>
+                </div>
+                <div class="bubble-footer">
+                </div>
             </div>
         </div>
     </div>
@@ -23,6 +25,7 @@
     <script src="bubble.js"></script>
     <script>
         let Bubble1 = new Bubble({
+            background: '.bubble-background',
             box: '.bubble-box',
             trigger: '#show_bubble',
             close: '.bubble-close'

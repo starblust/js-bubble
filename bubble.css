@@ -1,4 +1,20 @@
+.bubble-background{
+    z-index: 1000;
+    display:none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #00a1ff30);
+}
+
+.bubble-background.shown{
+    display: block;
+}
+
 .bubble-box{
+    z-index: 1001;
     display: none;
     position: absolute;
     top: 50%;
@@ -7,6 +23,8 @@
     padding: 10px 15px;
     box-shadow: 0 4px 10px 0px rgb(206 206 206 / 50%);
     border: 1px solid #f7f7f7;
+    background: white;
+    border-radius: 5px;
 }
 
 .bubble-box.shown{
