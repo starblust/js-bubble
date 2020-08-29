@@ -12,7 +12,6 @@ function Bubble(opts = {})
     let that = this;
 
     this.default = {
-        bubble: '',
         close: '',
         box: '',
         position: 'center',
