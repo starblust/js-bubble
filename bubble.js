@@ -12,6 +12,7 @@ function Bubble(opts = {})
     let that = this;
 
     this.default = {
+        responsive: true,
         close: '',
         shownClass: 'shown',
         background: '',
@@ -64,8 +65,54 @@ function Bubble(opts = {})
         return true;
     }
 
-    function setupView() {
+    function setupView(that, screen){
         that.box.classList.add(that.opts.position);
+        if (screen == undefined) {
+            screen = window
+        }
+        if (that.opts.responsive) {
+            var s_width = screen.innerWidth
+                        || document.documentElement.clientWidth
+                        || document.body.clientWidth;
+
+            var s_height = screen.innerHeight
+                        || document.documentElement.clientHeight
+                        || document.body.clientHeight;
+
+            var box_props = that.box.getBoundingClientRect();
+
+            if (box_props.width > s_width) {
+                if (that.background) {
+                    that.background.classList.remove('responsive-horizontal');
+                    that.background.classList.add('responsive-horizontal');
+                } else {
+                    that.box.classList.remove('responsive-horizontal');
+                    that.box.classList.add('responsive-horizontal');
+                }
+            } else {
+                if (that.background) {
+                    that.background.classList.remove('responsive-horizontal');
+                } else {
+                    that.box.classList.remove('responsive-horizontal');
+                }
+            } 
+
+            if (box_props.height > s_height) {
+                if (that.background) {
+                    that.background.classList.remove('responsive-vertical');
+                    that.background.classList.add('responsive-vertical');
+                } else {
+                    that.box.classList.remove('responsive-vertical');
+                    that.box.classList.add('responsive-vertical');
+                }
+            } else {
+                if (that.background) {
+                    that.background.classList.remove('responsive-vertical');
+                } else {
+                    that.box.classList.remove('responsive-vertical');
+                }
+            }
+        }
     }
 
     function attachEvents() {
@@ -82,14 +129,21 @@ function Bubble(opts = {})
             if (this.close && e.target == this.close) {
                 this.hide();
             }
-        }.bind(that))
+        }.bind(that));
+
+        window.addEventListener('resize', function(e) {
+            setupView(that, e.target);
+        }.bind(that));
     }
 
     processOpts(opts);
 
     if (init()) {
-        setupView();
         attachEvents();
+    }
+
+    this.setupView = function() {
+        setupView(this);
     }
 
     this.show = function() {
@@ -103,6 +157,7 @@ function Bubble(opts = {})
         if (this.opts.onAfterShow) {
             this.opts.onAfterShow(this);
         }
+        this.setupView(this);
     }
 
     this.hide = function() {

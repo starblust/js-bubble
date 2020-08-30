@@ -3,12 +3,12 @@
 <p><b>Popup helper</b>. Light, minimal version.</p>
 <h3>Changes</h3>
 <ul>
-<li> + callbacks events(show, hide)
-<li> + option to set a classname for active bubble box
+<li> + parameter: responsive(bool)
 </ul>
 <h3>Options</h3>
 <pre>
     <code>
+    reponsive: true        // auto aligning and scrool enabling
     close: '.popup_close', // close button
     background: ''         // background element
     box: '',               // html element of popup container 
