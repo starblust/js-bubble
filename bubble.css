@@ -13,18 +13,47 @@
     display: block;
 }
 
+.bubble-background.responsive-horizontal,
+.bubble-box.responsive-horizontal{
+    overflow-x: auto;
+}
+
+.bubble-background.responsive-vertical,
+.bubble-box.responsive-vertical{
+    overflow-y: auto;
+}
+
 .bubble-box{
     z-index: 1001;
     display: none;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     padding: 10px 15px;
     box-shadow: 0 4px 10px 0px rgb(206 206 206 / 50%);
     border: 1px solid #f7f7f7;
     background: white;
     border-radius: 5px;
+}
+
+.bubble-background.responsive-horizontal .bubble-box,
+.bubble-box.responsive-horizontal{
+    left:0;
+    transform: translate(0%, -50%);
+}
+
+.bubble-background.responsive-vertical .bubble-box,
+.bubble-box.responsive-vertical{
+    top:0;
+    transform: translate(-50%, 0%);
+}
+
+.bubble-background.responsive-horizontal.responsive-vertical .bubble-box,
+.bubble-box.responsive-horizontal.responsive-vertical{
+    top:0;
+    left: 0;
+    transform: translate(0,0);
+    overflow: auto;
 }
 
 .bubble-box.shown{
