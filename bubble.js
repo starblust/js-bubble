@@ -154,10 +154,10 @@ function Bubble(opts = {})
             this.background.classList.add(this.opts.shownClass);
         }
         this.box.classList.add(this.opts.shownClass);
+        this.setupView(this);
         if (this.opts.onAfterShow) {
             this.opts.onAfterShow(this);
         }
-        this.setupView(this);
     }
 
     this.hide = function() {
